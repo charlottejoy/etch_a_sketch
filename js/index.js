@@ -2,8 +2,8 @@
 //Done add erase which keeps ink position
 // Done keyboard
 // make desighn more flexible
-var totalRows = 20;
-var totalCells = 40;
+var totalRows = 100;//20;
+var totalCells = 100;//40;
 var selectedCell;
 createDrawingArea(totalRows, totalCells);
 var selectedCellNumber=1;//((totalRows-1)*totalCells)+1;
@@ -13,24 +13,36 @@ $("#"+startingId+"").addClass("starting");
 function createDrawingArea(totalRows, totalCells) {
   //while less than number of rows, add number of cells to first row, append the row, repeat.
   var cellNumber = 0;
-  var rowNumber = 0;
-
-  while (rowNumber < totalRows) {
-    rowNumber++;
-    var row = $("<div class='row' id='row" + rowNumber + "'></div>"); //incrementally name rows
-    while (cellNumber < totalCells * totalRows) {
+  var rowNumber = 1;
+var row;
+  
+  row = $("<div class='row' id='row" + rowNumber + "'></div>");
+  
+  
+    while (cellNumber<totalRows*totalCells) {
+       row.appendTo($("#drawing-area")); 
       cellNumber++;
+     
       var cell = $("<div class='cell' id='cell" + cellNumber + "'></div>"); //incrementally name cells
-      row.append(cell);
-    }
+     // row.append(cell);
+      cell.appendTo(row);
 
-    row.appendTo($("#drawing-area"));
+      
+      if(cellNumber%totalCells==0){
+    row.appendTo($("#drawing-area"));  //append row before moving on  
+         rowNumber++;
+        row = $("<div class='row' id='row" + rowNumber + "'></div>");
+         }   
+        //incrementally name rows when end of cells per row
+ 
+ 
   }
-}
+  }
 
 function drawing(direction){
   
   $("#"+startingId+"").removeClass("starting");
+   $("#"+selectedCell).removeClass("starting"); 
   if (direction=="up"){
   if((selectedCellNumber-totalCells)>0){
    selectedCellNumber-=totalCells;
