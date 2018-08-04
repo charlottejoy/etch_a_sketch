@@ -2,8 +2,8 @@
 //Done add erase which keeps ink position
 // Done keyboard
 // make desighn more flexible
-var totalRows = 100;//20;
-var totalCells = 100;//40;
+var totalRows=100;// = 100;//20;
+var totalCells=100; //= 100;//40;
 var selectedCell;
 createDrawingArea(totalRows, totalCells);
 var selectedCellNumber=1;//((totalRows-1)*totalCells)+1;
@@ -11,6 +11,7 @@ var startingId= "cell"+(selectedCellNumber);
 $("#"+startingId+"").addClass("starting");
 
 function createDrawingArea(totalRows, totalCells) {
+  // window.innerHeight <= 500 || window.innerWidth <= 450 ? (totalRows = 40, totalCells=40) : (totalRows = 100, totalCells=100);
   //while less than number of rows, add number of cells to first row, append the row, repeat.
   var cellNumber = 0;
   var rowNumber = 1;
